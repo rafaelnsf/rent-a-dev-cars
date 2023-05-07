@@ -1,0 +1,80 @@
+{
+  "veiculos": [
+    {
+      "id": 1,
+      "nome": "Corsa",
+      "marca": "Chevrolet",
+      "valorDiaria": 100,
+      "valorVeiculo": 50000,
+      "kmRodado": 100000,
+      "ano": 2015
+    },
+    {
+      "id": 2,
+      "nome": "Gol",
+      "marca": "Volkswagen",
+      "valorDiaria": 120,
+      "valorVeiculo": 60000,
+      "kmRodado": 90000,
+      "ano": 2018
+    },
+    {
+      "id": 3,
+      "nome": "Uno",
+      "marca": "Fiat",
+      "valorDiaria": 90,
+      "valorVeiculo": 45000,
+      "kmRodado": 120000,
+      "ano": 2017
+    }
+  ],
+  "marcas": [
+    {
+      "id": 1,
+      "nome": "Fiat",
+      "proprietario": "Stellantis",
+      "fundador": "Giovanni Agnelli",
+      "dataCriacao": "1899-06-11",
+      "sede": "Turim",
+      "tipoVeiculos": ["SUV", "Sedan", "Compactos"]
+    },
+    {
+      "id": 2,
+      "nome": "Volkswagen",
+      "proprietario": "Grupo Volkswagen",
+      "fundador": "DAF",
+      "dataCriacao": "1937-05-28",
+      "sede": "Wolfsburg",
+      "tipoVeiculos": ["SUV", "Sedan", "Compactos", "Coupe", "Eletricos"]
+    },
+    {
+      "id": 3,
+      "nome": "Chevrolet",
+      "proprietario": "General Motors",
+      "fundador": "Louis Chevrolet",
+      "dataCriacao": "1911-11-03",
+      "sede": "Detroit",
+      "tipoVeiculos": ["SUV", "Sedan", "Compactos", "Pickups"]
+    }
+  ],
+  "aluguel": [
+    {
+      "id": 1,
+      "veiculo": "Corsa",
+      "nomeCliente": "Rafael Lemos",
+      "cpf": "11075454980",
+      "dataInicial": "2023-03-04",
+      "dataEntrega": "2023-03-20",
+      "valorTotal": 1000
+    },
+    {
+      "id": 2,
+      "veiculo": "Uno",
+      "nomeCliente": "Amanda Costa",
+      "cpf": "45214789521",
+      "dataInicial": "2023-05-01",
+      "dataEntrega": "2023-05-05",
+      "valorTotal": 400
+    }
+  ]
+}
