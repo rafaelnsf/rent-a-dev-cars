@@ -1,0 +1,127 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      {{ createMode ? "Cadastro " : "Edição " }} do Automóvel
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="automovelForm">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Nome:</ion-label>
+        <ion-input
+          formControlName="nome"
+          placeholder="Digite o nome do automóvel"
+        ></ion-input>
+        <ion-note
+          slot="error"
+          *ngIf="automovelForm.controls['nome'].hasError('required')"
+        >
+          O campo é obrigatório
+        </ion-note>
+        <ion-note
+          slot="error"
+          *ngIf="automovelForm.controls['nome'].hasError('minlength')"
+        >
+          O campo tem
+          {{automovelForm.controls['nome'].errors?.['minlength'].actualLength}}
+          caracteres, entretanto deve ter no mínimo
+          {{automovelForm.controls['nome'].errors?.['minlength'].requiredLength}}
+          caracteres
+        </ion-note>
+        <ion-note
+          slot="error"
+          *ngIf="automovelForm.controls['nome'].hasError('maxlength')"
+        >
+          O campo deve ter no máximo
+          {{automovelForm.controls['nome'].errors?.['maxlength'].requiredLength}}
+          caracteres
+        </ion-note>
+        <ion-note
+          slot="error"
+          *ngIf="automovelForm.controls['nome'].hasError('invalidName')"
+        >
+          O nome do automóvel não pode conter o trecho de caracteres:
+          <strong
+            >{{automovelForm.controls['nome'].errors?.['invalidName']}}</strong
+          >
+        </ion-note>
+        <pre *ngIf="automovelForm.controls['nome'].errors">{{
+          automovelForm.controls["nome"].errors | json
+        }}</pre>
+      </ion-item>
+      <ion-item>
+        <ion-label>Marca</ion-label>
+        <ion-select
+          [compareWith]="compareWith"
+          formControlName="marca"
+          placeholder="Informe a marca do automóvel"
+        >
+          <ion-select-option *ngFor="let m of marcas" [value]="m">
+            {{ m.nome }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Valor da Diária:</ion-label>
+        <ion-input
+          type="number"
+          formControlName="valorDiaria"
+          placeholder="Digite o valor da Diária"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Valor total do automóvel:</ion-label>
+        <ion-input
+          type="number"
+          formControlName="valorVeiculo"
+          placeholder="Digite o valor da Diária"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">KM rodados:</ion-label>
+        <ion-input
+          type="number"
+          formControlName="kmRodado"
+          placeholder="Digite quantos KM rodados"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label> Ano do Veiculo </ion-label>
+        <ion-datetime-button datetime="ano"></ion-datetime-button>
+        <ion-modal [keepContentsMounted]="true">
+          <ng-template>
+            <ion-datetime
+              formControlName="ano"
+              id="ano"
+              presentation="year"
+              showDefaultButtons="true"
+              doneText="Selecionar"
+              cancelText="Cancelar"
+              showDefaultTitle="true"
+            >
+              <span slot="title">Selecione o ano do automóvel</span>
+            </ion-datetime>
+          </ng-template>
+        </ion-modal>
+      </ion-item>
+    </ion-list>
+    <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+      <ion-fab-button (click)="save()" [disabled]="automovelForm.invalid">
+        <ion-icon name="checkmark"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+    <ion-fab horizontal="start" vertical="bottom" slot="fixed">
+      <ion-fab-button color="light" (click)="cancel()">
+        <ion-icon name="close"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </form>
+</ion-content>
+
+<ion-footer> </ion-footer>
