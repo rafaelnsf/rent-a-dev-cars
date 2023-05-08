@@ -23,7 +23,7 @@ const routes: Routes = [
       import('./marcas/marca.module').then((a) => a.MarcaModule),
   },
   {
-    path: 'aluguel-automoveis',
+    path: 'alugueis',
     loadChildren: () =>
       import('./aluguel-automoveis/aluguel-automovel.module').then(
         (a) => a.AluguelAutomovelModule

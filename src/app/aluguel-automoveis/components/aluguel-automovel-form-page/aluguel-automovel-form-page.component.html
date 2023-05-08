@@ -1,0 +1,154 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      {{ createMode ? "Cadastro " : "Edição " }} do aluguel de Automóvel
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="aluguelautomovelForm">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Nome Cliente:</ion-label>
+        <ion-input
+          formControlName="nomeCliente"
+          placeholder="Digite seu nome"
+        ></ion-input>
+        <ion-note
+          slot="error"
+          *ngIf="
+            aluguelautomovelForm.controls['nomeCliente'].hasError('required')
+          "
+        >
+          O campo é obrigatório
+        </ion-note>
+        <ion-note
+          slot="error"
+          *ngIf="
+            aluguelautomovelForm.controls['nomeCliente'].hasError('minlength')
+          "
+        >
+          O campo tem
+          {{aluguelautomovelForm.controls['nomeCliente'].errors?.['minlength'].actualLength}}
+          caracteres, entretanto deve ter no mínimo
+          {{aluguelautomovelForm.controls['nomeCliente'].errors?.['minlength'].requiredLength}}
+          caracteres
+        </ion-note>
+        <ion-note
+          slot="error"
+          *ngIf="
+            aluguelautomovelForm.controls['nomeCliente'].hasError('maxlength')
+          "
+        >
+          O campo deve ter no máximo
+          {{aluguelautomovelForm.controls['nomeCliente'].errors?.['maxlength'].requiredLength}}
+          caracteres
+        </ion-note>
+        <ion-note
+          slot="error"
+          *ngIf="
+            aluguelautomovelForm.controls['nomeCliente'].hasError('invalidName')
+          "
+        >
+          Seu nome do cliente não pode conter o trecho de caracteres:
+          <strong
+            >{{aluguelautomovelForm.controls['nomeCliente'].errors?.['invalidName']}}</strong
+          >
+        </ion-note>
+        <pre *ngIf="aluguelautomovelForm.controls['nomeCliente'].errors">{{
+          aluguelautomovelForm.controls["nomeCliente"].errors | json
+        }}</pre>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">CPF:</ion-label>
+        <ion-input
+          formControlName="cpf"
+          placeholder="Digite seu CPF"
+        ></ion-input>
+        <ion-note
+          slot="error"
+          *ngIf="aluguelautomovelForm.controls['cpf'].hasError('required')"
+        >
+          O campo é obrigatório
+        </ion-note>
+        <ion-note
+          slot="error"
+          *ngIf="aluguelautomovelForm.controls['cpf'].hasError('minlength')"
+        >
+          O campo tem
+          {{aluguelautomovelForm.controls['cpf'].errors?.['minlength'].actualLength}}
+          caracteres, entretanto deve ter no mínimo
+          {{aluguelautomovelForm.controls['cpf'].errors?.['minlength'].requiredLength}}
+          caracteres
+        </ion-note>
+        <ion-note
+          slot="error"
+          *ngIf="aluguelautomovelForm.controls['cpf'].hasError('maxlength')"
+        >
+          O campo deve ter no máximo
+          {{aluguelautomovelForm.controls['cpf'].errors?.['maxlength'].requiredLength}}
+          caracteres
+        </ion-note>
+        <ion-note
+          slot="error"
+          *ngIf="aluguelautomovelForm.controls['cpf'].hasError('invalidCpf')"
+        >
+          Seu cpf não pode conter o trecho de caracteres:
+          <strong
+            >{{aluguelautomovelForm.controls['cpf'].errors?.['invalidCpf']}}</strong
+          >
+        </ion-note>
+        <pre *ngIf="aluguelautomovelForm.controls['cpf'].errors">{{
+          aluguelautomovelForm.controls["cpf"].errors | json
+        }}</pre>
+      </ion-item>
+      <ion-item>
+        <ion-label>Veiculo</ion-label>
+        <ion-select
+          formControlName="veiculo"
+          placeholder="Escolha um veiculo"
+          [compareWith]="compareWith"
+        >
+          <ion-select-option *ngFor="let a of automoveis" [value]="a">
+            {{ a.nome }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Data de Inicio:</ion-label>
+        <ion-input
+          type="date"
+          formControlName="dataInicial"
+          placeholder="Informe Data de inicio"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Data Entrega:</ion-label>
+        <ion-input
+          type="date"
+          formControlName="dataEntrega"
+          placeholder="Informe a data de entrega"
+        ></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+      <ion-fab-button
+        (click)="save()"
+        [disabled]="aluguelautomovelForm.invalid"
+      >
+        <ion-icon name="checkmark"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+    <ion-fab horizontal="start" vertical="bottom" slot="fixed">
+      <ion-fab-button color="light" (click)="cancel()">
+        <ion-icon name="close"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </form>
+</ion-content>
+
+<ion-footer> </ion-footer>

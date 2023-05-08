@@ -9,11 +9,21 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let automovel of automoveis">
+    <ion-item *ngFor="let aluguel of alugueis">
       <ion-label>
-        {{ automovel.nome }}
+        {{ aluguel.veiculo.nome }}
       </ion-label>
-      <ion-icon name="car" slot="end" (click)="alugado(automovel)"></ion-icon>
+      <ion-icon
+        name="car"
+        slot="end"
+        [routerLink]="['../edicao', aluguel.id]"
+      ></ion-icon>
+      <ion-icon name="trash" slot="end" (click)="remove(aluguel)"></ion-icon>
     </ion-item>
   </ion-list>
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button [routerLink]="['../cadastro']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

@@ -1,5 +1,3 @@
-import { AlugadoInterface } from "./alugado.interface";
-
 export interface AutomovelInterface {
   id: number;
   nome: string;
@@ -8,5 +6,4 @@ export interface AutomovelInterface {
   valorVeiculo?: string;
   kmRodado?: string;
   ano?: string;
-  alugado?: AlugadoInterface;
 }

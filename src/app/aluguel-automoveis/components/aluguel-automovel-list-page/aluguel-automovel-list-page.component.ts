@@ -7,8 +7,8 @@ import {
   ViewWillEnter,
 } from '@ionic/angular';
 import { Observable, Subscription } from 'rxjs';
-import { AutomovelService } from '../../services/automovel.service';
-import { AutomovelInterface } from '../../types/aluguel-automovel.interface';
+import { AluguelAutomovelService } from '../../services/aluguel-automovel.service';
+import { AluguelAutomovelInterface } from '../../types/alugado-automovel.interface';
 
 @Component({
   selector: 'app-aluguel-automovel-list-page',
@@ -17,18 +17,18 @@ import { AutomovelInterface } from '../../types/aluguel-automovel.interface';
 export class AluguelAutomovelListPageComponent
   implements ViewWillEnter, ViewDidLeave, OnDestroy
 {
-  automoveis: AutomovelInterface[] = [];
+  alugueis: AluguelAutomovelInterface[] = [];
   subscriptions = new Subscription();
 
   constructor(
-    private autorService: AutomovelService,
+    private aluguelAutomovelService: AluguelAutomovelService,
     private alertController: AlertController,
     private loadingController: LoadingController,
     private toastController: ToastController
   ) {}
 
   ionViewDidLeave(): void {
-    this.automoveis = [];
+    this.alugueis = [];
   }
 
   ionViewWillEnter(): void {
@@ -45,12 +45,12 @@ export class AluguelAutomovelListPageComponent
     });
     busyLoader.present();
 
-    const subscription = this.autorService.getAutomoveis().subscribe(
-      async (automoveis) => {
-        this.automoveis = automoveis;
+    const subscription = this.aluguelAutomovelService.getAlugueis().subscribe(
+      async (alugueis) => {
+        this.alugueis = alugueis;
         const toast = await this.toastController.create({
           color: 'success',
-          message: 'Lista de automoveis carregada com sucesso!',
+          message: 'Lista de alugueis carregada com sucesso!',
           duration: 15000,
           buttons: ['X'],
         });
@@ -60,7 +60,7 @@ export class AluguelAutomovelListPageComponent
       async () => {
         const alerta = await this.alertController.create({
           header: 'Erro',
-          message: 'Não foi possível carregar a lista de automoveis',
+          message: 'Não foi possível carregar a lista de alugueis',
           buttons: ['Ok'],
         });
         alerta.present();
@@ -70,17 +70,17 @@ export class AluguelAutomovelListPageComponent
     this.subscriptions.add(subscription);
   }
 
-  async alugado(automovel: AutomovelInterface) {
+  async remove(aluguel: AluguelAutomovelInterface) {
     const alert = await this.alertController.create({
-      header: 'Confirmação de Aluguel',
-      message: `Deseja alugar esse veículo ${automovel.nome}?`,
+      header: 'Confirmação de exclusão',
+      message: `Deseja excluir o aluguel do veiculo ${aluguel.veiculo}?`,
       buttons: [
         {
           text: 'Sim',
           handler: () => {
             this.subscriptions.add(
-              this.autorService
-                .aluguel(automovel)
+              this.aluguelAutomovelService
+                .remove(aluguel)
                 .subscribe(() => this.listar())
             );
           },

@@ -13,7 +13,7 @@ export class AppComponent {
       url: '/marcas',
       icon: 'cog',
     },
-    { title: 'Aluguel Automoveis', url: '/aluguel-automoveis', icon: 'cart' },
+    { title: 'Aluguel Automoveis', url: '/alugueis', icon: 'cart' },
     {
       title: 'Automóveis Favoritos',
       url: '/automoveis/favoritos',

@@ -45,12 +45,7 @@
         "fundador": "Louis Chevrolet",
         "dataCriacao": "1911-11-03",
         "sede": "Detroit",
-        "tipoVeiculos": [
-          "SUV",
-          "Sedan",
-          "Compactos",
-          "Pickups"
-        ]
+        "tipoVeiculos": ["SUV", "Sedan", "Compactos", "Pickups"]
       },
       "valorDiaria": 120,
       "valorVeiculo": 105004,
@@ -67,11 +62,7 @@
       "fundador": "Giovanni Agnelli",
       "dataCriacao": "1899-06-11",
       "sede": "Turim",
-      "tipoVeiculos": [
-        "SUV",
-        "Sedan",
-        "Compactos"
-      ]
+      "tipoVeiculos": ["SUV", "Sedan", "Compactos"]
     },
     {
       "id": 2,
@@ -80,13 +71,7 @@
       "fundador": "DAF",
       "dataCriacao": "1937-05-28",
       "sede": "Wolfsburg",
-      "tipoVeiculos": [
-        "SUV",
-        "Sedan",
-        "Compactos",
-        "Coupe",
-        "Eletricos"
-      ]
+      "tipoVeiculos": ["SUV", "Sedan", "Compactos", "Coupe", "Eletricos"]
     },
     {
       "id": 3,
@@ -95,18 +80,24 @@
       "fundador": "Louis Chevrolet",
       "dataCriacao": "1911-11-03",
       "sede": "Detroit",
-      "tipoVeiculos": [
-        "SUV",
-        "Sedan",
-        "Compactos",
-        "Pickups"
-      ]
+      "tipoVeiculos": ["SUV", "Sedan", "Compactos", "Pickups"]
     }
   ],
-  "aluguel": [
+  "alugueis": [
     {
       "id": 1,
-      "veiculo": "Corsa",
+      "veiculo": {
+        "id": 3,
+        "nome": "Uno",
+        "marca": {
+          "id": 1,
+          "nome": "Fiat"
+        },
+        "valorDiaria": 90,
+        "valorVeiculo": 45000,
+        "kmRodado": 120000,
+        "ano": 2017
+      },
       "nomeCliente": "Rafael Lemos",
       "cpf": "11075454980",
       "dataInicial": "2023-03-04",
@@ -115,12 +106,42 @@
     },
     {
       "id": 2,
-      "veiculo": "Uno",
+      "veiculo": {
+        "id": 3,
+        "nome": "Uno",
+        "marca": {
+          "id": 1,
+          "nome": "Fiat"
+        },
+        "valorDiaria": 90,
+        "valorVeiculo": 45000,
+        "kmRodado": 120000,
+        "ano": 2017
+      },
       "nomeCliente": "Amanda Costa",
       "cpf": "45214789521",
       "dataInicial": "2023-05-01",
       "dataEntrega": "2023-05-05",
       "valorTotal": 400
+    },
+    {
+      "nomeCliente": "rafa",
+      "veiculo": {
+        "id": 3,
+        "nome": "Uno",
+        "marca": {
+          "id": 1,
+          "nome": "Fiat"
+        },
+        "valorDiaria": 90,
+        "valorVeiculo": 45000,
+        "kmRodado": 120000,
+        "ano": 2017
+      },
+      "cpf": "11075454980",
+      "dataInicial": "2023-05-17",
+      "dataEntrega": "2023-05-10",
+      "id": 3
     }
   ]
 }
