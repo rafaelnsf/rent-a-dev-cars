@@ -1,8 +1,8 @@
-// import { AutorFormPageComponent } from './components/autor-form-page/autor-form-page.component';
 import { NgModule } from '@angular/core';
 import { Route, RouterModule } from '@angular/router';
 import { AutomovelListPageComponent } from './components/automovel-list-page/automovel-list-page.component';
-import { AutomovelFormPageComponent } from './components/autor-form-page/automovel-form-page.component';
+import { AutomovelFormPageComponent } from './components/automovel-form-page/automovel-form-page.component';
+import { AutomovelFavoritosPageComponent } from './components/automovel-favoritos-page/automovel-favoritos-page.component';
 
 const routes: Route[] = [
   {
@@ -21,6 +21,10 @@ const routes: Route[] = [
   {
     path: 'edicao/:id',
     component: AutomovelFormPageComponent,
+  },
+  {
+    path: 'favoritos',
+    component: AutomovelFavoritosPageComponent,
   },
 ];
 

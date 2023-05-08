@@ -8,6 +8,17 @@ export class AppComponent {
   public appPages = [
     { title: 'Home', url: '/', icon: 'home' },
     { title: 'Automoveis', url: '/automoveis', icon: 'car' },
+    {
+      title: 'Marcas',
+      url: '/marcas',
+      icon: 'cog',
+    },
+    { title: 'Aluguel Automoveis', url: '/aluguel-automoveis', icon: 'cart' },
+    {
+      title: 'Automóveis Favoritos',
+      url: '/automoveis/favoritos',
+      icon: 'star',
+    },
   ];
   constructor() {}
 }

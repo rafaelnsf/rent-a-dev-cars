@@ -67,11 +67,11 @@ export class AutomovelFormPageComponent
   ngOnInit(): void {
     this.loadingService;
     this.initializeForm();
-    this.loadNacionalidades();
+    this.loadMarcas();
     this.loadAutomovelOnEditMode();
   }
 
-  private async loadNacionalidades() {
+  private async loadMarcas() {
     this.loadingService.on();
     this.subscription.add(
       this.marcaService.getMarcas().subscribe((response) => {

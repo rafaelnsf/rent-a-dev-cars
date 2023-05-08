@@ -8,20 +8,20 @@ import {
 } from '@ionic/angular';
 import { Observable, Subscription } from 'rxjs';
 import { AutomovelService } from '../../services/automovel.service';
-import { AutomovelInterface } from '../../types/automovel.interface';
+import { AutomovelInterface } from '../../types/aluguel-automovel.interface';
 
 @Component({
-  selector: 'app-automovel-list-page',
-  templateUrl: './automovel-list-page.component.html',
+  selector: 'app-aluguel-automovel-list-page',
+  templateUrl: './aluguel-automovel-list-page.component.html',
 })
-export class AutomovelListPageComponent
+export class AluguelAutomovelListPageComponent
   implements ViewWillEnter, ViewDidLeave, OnDestroy
 {
   automoveis: AutomovelInterface[] = [];
   subscriptions = new Subscription();
 
   constructor(
-    private automovelService: AutomovelService,
+    private autorService: AutomovelService,
     private alertController: AlertController,
     private loadingController: LoadingController,
     private toastController: ToastController
@@ -45,13 +45,13 @@ export class AutomovelListPageComponent
     });
     busyLoader.present();
 
-    const subscription = this.automovelService.getAutomoveis().subscribe(
+    const subscription = this.autorService.getAutomoveis().subscribe(
       async (automoveis) => {
         this.automoveis = automoveis;
         const toast = await this.toastController.create({
           color: 'success',
           message: 'Lista de automoveis carregada com sucesso!',
-          duration: 8000,
+          duration: 15000,
           buttons: ['X'],
         });
         toast.present();
@@ -70,17 +70,17 @@ export class AutomovelListPageComponent
     this.subscriptions.add(subscription);
   }
 
-  async remove(automovel: AutomovelInterface) {
+  async alugado(automovel: AutomovelInterface) {
     const alert = await this.alertController.create({
-      header: 'Confirmação de exclusão',
-      message: `Deseja excluir o automovel ${automovel.nome}?`,
+      header: 'Confirmação de Aluguel',
+      message: `Deseja alugar esse veículo ${automovel.nome}?`,
       buttons: [
         {
           text: 'Sim',
           handler: () => {
             this.subscriptions.add(
-              this.automovelService
-                .remove(automovel)
+              this.autorService
+                .aluguel(automovel)
                 .subscribe(() => this.listar())
             );
           },
@@ -89,33 +89,5 @@ export class AutomovelListPageComponent
       ],
     });
     alert.present();
-  }
-
-  async favorite(automovel: AutomovelInterface) {
-    const automoveisFavoritesLocalStorage = window.localStorage.getItem(
-      'automoveisFavoritos'
-    );
-    let arrayAutomoveisFavoritos = automoveisFavoritesLocalStorage
-      ? JSON.parse(automoveisFavoritesLocalStorage)
-      : [];
-
-    const contain = arrayAutomoveisFavoritos.some(
-      (a: AutomovelInterface) => a.id === automovel.id
-    );
-    arrayAutomoveisFavoritos = contain
-      ? arrayAutomoveisFavoritos
-      : [...arrayAutomoveisFavoritos, automovel];
-
-    window.localStorage.setItem(
-      'automoveisFavoritos',
-      JSON.stringify(arrayAutomoveisFavoritos)
-    );
-    const toast = await this.toastController.create({
-      color: 'success',
-      message: 'Automóvel favorito adicionado com sucesso!',
-      duration: 8000,
-      buttons: ['X'],
-    });
-    toast.present();
   }
 }

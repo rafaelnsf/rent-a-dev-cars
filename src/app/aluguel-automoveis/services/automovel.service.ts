@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { AutomovelInterface } from '../types/automovel.interface';
+import { AutomovelInterface } from '../types/aluguel-automovel.interface';
 
 @Injectable()
 export class AutomovelService {
@@ -20,23 +20,24 @@ export class AutomovelService {
     );
   }
 
-  update(marca: AutomovelInterface): Observable<AutomovelInterface> {
+  update(automoveis: AutomovelInterface): Observable<AutomovelInterface> {
     return this.httpClient.put<AutomovelInterface>(
-      `${environment.apiUrl}/veiculos/${marca.id}`,
-      marca
+      `${environment.apiUrl}/veiculos/${automoveis.id}`,
+      automoveis
     );
   }
 
-  save(marca: AutomovelInterface): Observable<AutomovelInterface> {
+  save(automoveis: AutomovelInterface): Observable<AutomovelInterface> {
     return this.httpClient.post<AutomovelInterface>(
       `${environment.apiUrl}/veiculos`,
-      marca
+      automoveis
     );
   }
 
-  remove(marca: AutomovelInterface): Observable<void> {
-    return this.httpClient.delete<void>(
-      `${environment.apiUrl}/veiculos/${marca.id}`
+  aluguel(automoveis: AutomovelInterface): Observable<AutomovelInterface> {
+    return this.httpClient.put<AutomovelInterface>(
+      `${environment.apiUrl}/alugado/${automoveis.id}`,
+      automoveis
     );
   }
 }

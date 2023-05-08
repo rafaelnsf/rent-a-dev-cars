@@ -17,6 +17,18 @@ const routes: Routes = [
     loadChildren: () =>
       import('./automoveis/automovel.module').then((a) => a.AutomovelModule),
   },
+  {
+    path: 'marcas',
+    loadChildren: () =>
+      import('./marcas/marca.module').then((a) => a.MarcaModule),
+  },
+  {
+    path: 'aluguel-automoveis',
+    loadChildren: () =>
+      import('./aluguel-automoveis/aluguel-automovel.module').then(
+        (a) => a.AluguelAutomovelModule
+      ),
+  },
 ];
 
 @NgModule({
