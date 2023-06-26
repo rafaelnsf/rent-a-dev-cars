@@ -9,7 +9,7 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { AutomovelService } from '../../services/automovel.service';
-import { Subscription } from 'rxjs';
+import { Subscription, map } from 'rxjs';
 import {
   AlertController,
   ViewDidEnter,
@@ -25,15 +25,7 @@ import { LoadingService } from 'src/app/shared/services/loading.service';
   selector: 'app-automovel-form-page',
   templateUrl: './automovel-form-page.component.html',
 })
-export class AutomovelFormPageComponent
-  implements
-    OnInit,
-    OnDestroy,
-    ViewWillEnter,
-    ViewDidEnter,
-    ViewWillLeave,
-    ViewDidLeave
-{
+export class AutomovelFormPageComponent implements OnInit, OnDestroy {
   automovelForm!: FormGroup;
   subscription = new Subscription();
   createMode: boolean = false;
@@ -50,20 +42,6 @@ export class AutomovelFormPageComponent
     private marcaService: MarcaService,
     private loadingService: LoadingService
   ) {}
-
-  ionViewWillEnter(): void {
-    console.log('ionViewWillEnter');
-  }
-  ionViewDidEnter(): void {
-    console.log('ionViewDidEnter');
-  }
-  ionViewWillLeave(): void {
-    console.log('ionViewWillLeave');
-  }
-  ionViewDidLeave(): void {
-    console.log('ionViewDidLeave');
-  }
-
   ngOnInit(): void {
     this.loadingService;
     this.initializeForm();
@@ -74,10 +52,17 @@ export class AutomovelFormPageComponent
   private async loadMarcas() {
     this.loadingService.on();
     this.subscription.add(
-      this.marcaService.getMarcas().subscribe((response) => {
-        this.marcas = response;
-        this.loadingService.off();
-      })
+      this.marcaService
+        .getMarcas()
+        .pipe(
+          map((response) =>
+            response.map((item) => ({ id: item.id, nome: item.nome }))
+          )
+        )
+        .subscribe((marcas) => {
+          this.marcas = marcas;
+          this.loadingService.off();
+        })
     );
   }
 
@@ -100,6 +85,7 @@ export class AutomovelFormPageComponent
             valorVeiculo: automovel.valorVeiculo,
             kmRodado: automovel.kmRodado,
             ano: automovel.ano,
+            imagemUrl: automovel.imagemUrl,
           });
           this.loadingService.off();
         });
@@ -110,7 +96,7 @@ export class AutomovelFormPageComponent
   private initializeForm() {
     this.automovelForm = this.formBuilder.group({
       nome: [
-        'Nome qualquer',
+        '',
         [
           Validators.required,
           Validators.minLength(3),
@@ -119,10 +105,11 @@ export class AutomovelFormPageComponent
         ],
       ],
       marca: ['Marca do veiculo', Validators.required],
-      valorDiaria: 100,
-      valorVeiculo: 100000,
+      valorDiaria: '',
+      valorVeiculo: '',
       kmRodado: '',
       ano: ['', Validators.required],
+      imagemUrl: '',
     });
   }
 

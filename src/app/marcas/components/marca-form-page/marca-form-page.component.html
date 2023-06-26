@@ -3,9 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>
-      {{ createMode ? "Cadastro " : "Edição " }} do Automóvel
-    </ion-title>
+    <ion-title> {{ createMode ? "Cadastro " : "Edição " }} da Marca </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -14,10 +12,7 @@
     <ion-list>
       <ion-item>
         <ion-label position="floating">Nome:</ion-label>
-        <ion-input
-          formControlName="nome"
-          placeholder="Digite o nome da Marca"
-        ></ion-input>
+        <ion-input formControlName="nome"></ion-input>
         <ion-note
           slot="error"
           *ngIf="marcaForm.controls['nome'].hasError('required')"
@@ -51,9 +46,6 @@
             >{{marcaForm.controls['nome'].errors?.['invalidName']}}</strong
           >
         </ion-note>
-        <pre *ngIf="marcaForm.controls['nome'].errors">{{
-          marcaForm.controls["nome"].errors | json
-        }}</pre>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Proprietário:</ion-label>
@@ -105,7 +97,7 @@
           <ion-select-option
             *ngFor="let tipos of tiposDeCarro"
             [value]="tipos"
-            >{{ tipos }}</ion-select-option
+            >{{ tipos.nome }}</ion-select-option
           >
         </ion-select>
         <ion-note

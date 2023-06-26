@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title> Dashboard </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="dashboard-page">
+    <div class="main-card">
+      <canvas
+        baseChart
+        width="900"
+        height="400"
+        [type]="'line'"
+        [data]="lineChartData"
+        [options]="lineChartOptions"
+        [legend]="lineChartLegend"
+      >
+      </canvas>
+    </div>
+
+    <div class="secondary-cards">
+      <div class="secondary-card">
+        <!-- Conteúdo do primeiro card secundário -->
+      </div>
+
+      <div class="secondary-card">
+        <!-- Conteúdo do segundo card secundário -->
+      </div>
+    </div>
+  </div>
+</ion-content>

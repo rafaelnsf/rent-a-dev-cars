@@ -197,7 +197,7 @@
     "symbol-observable" "4.0.0"
     "yargs" "17.6.2"
 
-"@angular/common@^15.0.0", "@angular/common@15.2.3":
+"@angular/common@^15.0.0", "@angular/common@>=14.0.0", "@angular/common@15.2.3":
   "integrity" "sha512-J68CSb57XadC2weHw7kmHjCdrHNgxPv8ZW6KlnmYvIRJrkKsZuCl+PvFe90VMDvHtlBnSnz8sjAPqoUxesMRNg=="
   "resolved" "https://registry.npmjs.org/@angular/common/-/common-15.2.3.tgz"
   "version" "15.2.3"
@@ -227,7 +227,7 @@
   dependencies:
     "tslib" "^2.3.0"
 
-"@angular/core@^15.0.0", "@angular/core@>=12.0.0", "@angular/core@15.2.3", "@angular/core@15.2.9":
+"@angular/core@^15.0.0", "@angular/core@>=12.0.0", "@angular/core@>=14.0.0", "@angular/core@15.2.3", "@angular/core@15.2.9":
   "integrity" "sha512-e+d6upOqAyqE7MxxRthd1ZJILSKX+hXHCmujc48id8G3zhP0tD59iZ03KgUe8RMvXMlSBUhwOwDX39tr701eig=="
   "resolved" "https://registry.npmjs.org/@angular/core/-/core-15.2.3.tgz"
   "version" "15.2.3"
@@ -1533,6 +1533,11 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
+"@kurkle/color@^0.3.0":
+  "integrity" "sha512-fuscdXJ9G1qb7W8VdHi+IwRqij3lBkosAm4ydQtEmbY58OzHXqQhvlxqEkoz0yssNVn38bcpRWgA9PP+OGoisw=="
+  "resolved" "https://registry.npmjs.org/@kurkle/color/-/color-0.3.2.tgz"
+  "version" "0.3.2"
+
 "@leichtgewicht/ip-codec@^2.0.1":
   "integrity" "sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A=="
   "resolved" "https://registry.npmjs.org/@leichtgewicht/ip-codec/-/ip-codec-2.0.4.tgz"
@@ -2724,6 +2729,13 @@
   "integrity" "sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA=="
   "resolved" "https://registry.npmjs.org/chardet/-/chardet-0.7.0.tgz"
   "version" "0.7.0"
+
+"chart.js@^3.4.0 || ^4.0.0", "chart.js@^4.3.0":
+  "integrity" "sha512-ynG0E79xGfMaV2xAHdbhwiPLczxnNNnasrmPEXriXsPJGjmhOBYzFVEsB65w2qMDz+CaBJJuJD0inE/ab/h36g=="
+  "resolved" "https://registry.npmjs.org/chart.js/-/chart.js-4.3.0.tgz"
+  "version" "4.3.0"
+  dependencies:
+    "@kurkle/color" "^0.3.0"
 
 "chokidar@^3.0.0", "chokidar@^3.5.1", "chokidar@^3.5.2", "chokidar@^3.5.3", "chokidar@>=3.0.0 <4.0.0", "chokidar@3.5.3":
   "integrity" "sha512-Dr3sfKRP6oTcjf2JmUmFJfeVMvXBdegxB0iVQ5eb2V10uFJUCAS8OByZdVAyVb8xXNz3GjjTgj9kLWsZTqE6kw=="
@@ -5455,6 +5467,11 @@
   dependencies:
     "p-locate" "^5.0.0"
 
+"lodash-es@^4.17.15":
+  "integrity" "sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw=="
+  "resolved" "https://registry.npmjs.org/lodash-es/-/lodash-es-4.17.21.tgz"
+  "version" "4.17.21"
+
 "lodash-id@^0.14.1":
   "integrity" "sha512-ikQPBTiq/d5m6dfKQlFdIXFzvThPi2Be9/AHxktOnDSfSxE1j9ICbBT5Elk1ke7HSTgM38LHTpmJovo9/klnLg=="
   "resolved" "https://registry.npmjs.org/lodash-id/-/lodash-id-0.14.1.tgz"
@@ -5933,6 +5950,14 @@
   "integrity" "sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw=="
   "resolved" "https://registry.npmjs.org/neo-async/-/neo-async-2.6.2.tgz"
   "version" "2.6.2"
+
+"ng2-charts@^4.1.1":
+  "integrity" "sha512-iHwXDbmX86lfeH8VRcsaW2tJATsuAZo4kvvC/Yk2l35zOHjevja1qBvO6BAibiDazi9r9aS6ZRJOqWPsz1pP2w=="
+  "resolved" "https://registry.npmjs.org/ng2-charts/-/ng2-charts-4.1.1.tgz"
+  "version" "4.1.1"
+  dependencies:
+    "lodash-es" "^4.17.15"
+    "tslib" "^2.3.0"
 
 "node-forge@^1":
   "integrity" "sha512-dPEtOeMvF9VMcYV/1Wb8CPoVAXtp6MKMlcbAt4ddqmGqUJ6fQZFXkNZNkNlfevtNkGtaSoXf/vNNNSvgrdXwtA=="

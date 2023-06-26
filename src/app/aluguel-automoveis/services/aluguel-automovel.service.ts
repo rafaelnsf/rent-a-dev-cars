@@ -10,13 +10,13 @@ export class AluguelAutomovelService {
 
   getAluguel(id: number): Observable<AluguelAutomovelInterface> {
     return this.httpClient.get<AluguelAutomovelInterface>(
-      `${environment.apiUrl}/alugueis/${id}`
+      `${environment.apiUrl}/aluguel-automoveis/${id}`
     );
   }
 
   getAlugueis(): Observable<AluguelAutomovelInterface[]> {
     return this.httpClient.get<AluguelAutomovelInterface[]>(
-      `${environment.apiUrl}/alugueis`
+      `${environment.apiUrl}/aluguel-automoveis`
     );
   }
 
@@ -24,7 +24,7 @@ export class AluguelAutomovelService {
     alugueis: AluguelAutomovelInterface
   ): Observable<AluguelAutomovelInterface> {
     return this.httpClient.put<AluguelAutomovelInterface>(
-      `${environment.apiUrl}/alugueis/${alugueis.id}`,
+      `${environment.apiUrl}/aluguel-automoveis/${alugueis.id}`,
       alugueis
     );
   }
@@ -33,13 +33,13 @@ export class AluguelAutomovelService {
     alugueis: AluguelAutomovelInterface
   ): Observable<AluguelAutomovelInterface> {
     return this.httpClient.post<AluguelAutomovelInterface>(
-      `${environment.apiUrl}/alugueis`,
+      `${environment.apiUrl}/aluguel-automoveis`,
       alugueis
     );
   }
   remove(aluguel: AluguelAutomovelInterface): Observable<void> {
     return this.httpClient.delete<void>(
-      `${environment.apiUrl}/alugueis/${aluguel.id}`
+      `${environment.apiUrl}/aluguel-automoveis/${aluguel.id}`
     );
   }
 }

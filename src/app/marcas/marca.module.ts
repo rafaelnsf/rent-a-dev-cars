@@ -7,6 +7,7 @@ import { MarcaRoutingModule } from './marca-routing.module';
 import { MarcaListPageComponent } from './components/marca-list-page/marca-list-page.component';
 import { MarcaService } from './services/marca.service';
 import { MarcaFormPageComponent } from './components/marca-form-page/marca-form-page.component';
+import { TiposService } from './services/tipos.service';
 
 @NgModule({
   imports: [
@@ -18,6 +19,6 @@ import { MarcaFormPageComponent } from './components/marca-form-page/marca-form-
     MarcaRoutingModule,
   ],
   declarations: [MarcaListPageComponent, MarcaFormPageComponent],
-  providers: [MarcaService],
+  providers: [MarcaService, TiposService],
 })
 export class MarcaModule {}

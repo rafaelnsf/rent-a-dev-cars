@@ -9,8 +9,6 @@ export class MarcaService {
   constructor(private httpClient: HttpClient) {}
 
   getMarcas(): Observable<MarcaInterface[]> {
-    return this.httpClient.get<MarcaInterface[]>(
-      `${environment.apiUrl}/marcas`
-    );
+    return this.httpClient.get<MarcaInterface[]>(`${environment.apiUrl}/marca`);
   }
 }

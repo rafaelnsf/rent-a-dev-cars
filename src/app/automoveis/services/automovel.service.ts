@@ -10,33 +10,33 @@ export class AutomovelService {
 
   getAutomovel(id: number): Observable<AutomovelInterface> {
     return this.httpClient.get<AutomovelInterface>(
-      `${environment.apiUrl}/veiculos/${id}`
+      `${environment.apiUrl}/automoveis/${id}`
     );
   }
 
   getAutomoveis(): Observable<AutomovelInterface[]> {
     return this.httpClient.get<AutomovelInterface[]>(
-      `${environment.apiUrl}/veiculos`
+      `${environment.apiUrl}/automoveis`
     );
   }
 
-  update(marca: AutomovelInterface): Observable<AutomovelInterface> {
+  update(automovel: AutomovelInterface): Observable<AutomovelInterface> {
     return this.httpClient.put<AutomovelInterface>(
-      `${environment.apiUrl}/veiculos/${marca.id}`,
-      marca
+      `${environment.apiUrl}/automoveis/${automovel.id}`,
+      automovel
     );
   }
 
-  save(marca: AutomovelInterface): Observable<AutomovelInterface> {
+  save(automovel: AutomovelInterface): Observable<AutomovelInterface> {
     return this.httpClient.post<AutomovelInterface>(
-      `${environment.apiUrl}/veiculos`,
-      marca
+      `${environment.apiUrl}/automoveis`,
+      automovel
     );
   }
 
-  remove(marca: AutomovelInterface): Observable<void> {
+  remove(automovel: AutomovelInterface): Observable<void> {
     return this.httpClient.delete<void>(
-      `${environment.apiUrl}/veiculos/${marca.id}`
+      `${environment.apiUrl}/automoveis/${automovel.id}`
     );
   }
 }

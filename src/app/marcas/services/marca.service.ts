@@ -10,33 +10,31 @@ export class MarcaService {
 
   getMarca(id: number): Observable<MarcaInterface> {
     return this.httpClient.get<MarcaInterface>(
-      `${environment.apiUrl}/marcas/${id}`
+      `${environment.apiUrl}/marca/${id}`
     );
   }
 
   getMarcas(): Observable<MarcaInterface[]> {
-    return this.httpClient.get<MarcaInterface[]>(
-      `${environment.apiUrl}/marcas`
-    );
+    return this.httpClient.get<MarcaInterface[]>(`${environment.apiUrl}/marca`);
   }
 
   update(marca: MarcaInterface): Observable<MarcaInterface> {
     return this.httpClient.put<MarcaInterface>(
-      `${environment.apiUrl}/marcas/${marca.id}`,
+      `${environment.apiUrl}/marca/${marca.id}`,
       marca
     );
   }
 
   save(marca: MarcaInterface): Observable<MarcaInterface> {
     return this.httpClient.post<MarcaInterface>(
-      `${environment.apiUrl}/marcas`,
+      `${environment.apiUrl}/marca`,
       marca
     );
   }
 
   remove(marca: MarcaInterface): Observable<void> {
     return this.httpClient.delete<void>(
-      `${environment.apiUrl}/marcas/${marca.id}`
+      `${environment.apiUrl}/marca/${marca.id}`
     );
   }
 }

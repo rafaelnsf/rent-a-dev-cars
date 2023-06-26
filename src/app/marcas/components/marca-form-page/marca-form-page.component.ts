@@ -1,3 +1,5 @@
+import { TiposInterface } from './../../types/tipos.interface';
+import { TiposService } from './../../services/tipos.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   AbstractControl,
@@ -8,7 +10,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Route, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, map } from 'rxjs';
 import {
   AlertController,
   ViewDidEnter,
@@ -23,30 +25,13 @@ import { LoadingService } from 'src/app/shared/services/loading.service';
   selector: 'app-marca-form-page',
   templateUrl: './marca-form-page.component.html',
 })
-export class MarcaFormPageComponent
-  implements
-    OnInit,
-    OnDestroy,
-    ViewWillEnter,
-    ViewDidEnter,
-    ViewWillLeave,
-    ViewDidLeave
-{
+export class MarcaFormPageComponent implements OnInit, OnDestroy {
   marcaForm!: FormGroup;
   subscription = new Subscription();
   createMode: boolean = false;
   editMode: boolean = false;
   id!: number;
-  tiposDeCarro = [
-    'Sedan',
-    'SUV',
-    'Hatchback',
-    'Cupê',
-    'Conversível',
-    'Picape',
-    'Van',
-    'Minivan',
-  ];
+  tiposDeCarro: TiposInterface[] = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -54,26 +39,24 @@ export class MarcaFormPageComponent
     private formBuilder: FormBuilder,
     private alertController: AlertController,
     private marcaService: MarcaService,
+    private tiposService: TiposService,
     private loadingService: LoadingService
   ) {}
-
-  ionViewWillEnter(): void {
-    console.log('ionViewWillEnter');
-  }
-  ionViewDidEnter(): void {
-    console.log('ionViewDidEnter');
-  }
-  ionViewWillLeave(): void {
-    console.log('ionViewWillLeave');
-  }
-  ionViewDidLeave(): void {
-    console.log('ionViewDidLeave');
-  }
 
   ngOnInit(): void {
     this.loadingService;
     this.initializeForm();
     this.loadAutomovelOnEditMode();
+    this.loadTipos();
+  }
+  private async loadTipos() {
+    this.loadingService.on();
+    this.subscription.add(
+      this.tiposService.getTipos().subscribe((tipos) => {
+        this.tiposDeCarro = tipos;
+        this.loadingService.off();
+      })
+    );
   }
 
   private loadAutomovelOnEditMode() {
@@ -105,7 +88,7 @@ export class MarcaFormPageComponent
   private initializeForm() {
     this.marcaForm = this.formBuilder.group({
       nome: [
-        'Nome Marca',
+        '',
         [
           Validators.required,
           Validators.minLength(3),

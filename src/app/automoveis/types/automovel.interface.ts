@@ -6,4 +6,5 @@ export interface AutomovelInterface {
   valorVeiculo?: string;
   kmRodado?: string;
   ano?: string;
+  imagemUrl?: string;
 }

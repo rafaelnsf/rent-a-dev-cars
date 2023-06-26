@@ -25,15 +25,7 @@ import { AutomovelService } from '../../services/automovel.service';
   selector: 'app-aluguel-automovel-form-page',
   templateUrl: './aluguel-automovel-form-page.component.html',
 })
-export class AluguelAutomovelFormPageComponent
-  implements
-    OnInit,
-    OnDestroy,
-    ViewWillEnter,
-    ViewDidEnter,
-    ViewWillLeave,
-    ViewDidLeave
-{
+export class AluguelAutomovelFormPageComponent implements OnInit, OnDestroy {
   aluguelautomovelForm!: FormGroup;
   subscription = new Subscription();
   createMode: boolean = false;
@@ -50,19 +42,6 @@ export class AluguelAutomovelFormPageComponent
     private automovelService: AutomovelService,
     private loadingService: LoadingService
   ) {}
-
-  ionViewWillEnter(): void {
-    console.log('ionViewWillEnter');
-  }
-  ionViewDidEnter(): void {
-    console.log('ionViewDidEnter');
-  }
-  ionViewWillLeave(): void {
-    console.log('ionViewWillLeave');
-  }
-  ionViewDidLeave(): void {
-    console.log('ionViewDidLeave');
-  }
 
   ngOnInit(): void {
     this.loadingService;
@@ -110,7 +89,7 @@ export class AluguelAutomovelFormPageComponent
   private initializeForm() {
     this.aluguelautomovelForm = this.formBuilder.group({
       nomeCliente: [
-        'Nome do Cliente',
+        '',
         [
           Validators.required,
           Validators.minLength(3),
